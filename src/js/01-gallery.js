@@ -1,7 +1,7 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
+import SimpleLightbox from 'simplelightbox';
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-console.log(galleryItems);
 const galleryContainer = document.querySelector(".gallery");
 
 function galleryListCreate(items) {
@@ -14,6 +14,7 @@ function galleryListCreate(items) {
   title="${item.description}" />
 </a></li>`).join("");
 }
+
 galleryContainer.innerHTML = galleryListCreate(galleryItems);
 
 let gallery = new SimpleLightbox('.gallery a', { overlayOpacity: 0.8 });
