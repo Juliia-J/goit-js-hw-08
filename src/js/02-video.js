@@ -1,8 +1,11 @@
 
-import Player from '@vimeo/player';
-import throttle from 'lodash.throttle';
+// import Player from '@vimeo/player';
+// import throttle from 'lodash.throttle';
 
-const player = new Player('handstick');
+const iframe = document.querySelector('iframe');
+const player = new Player(iframe);
+// const player = new Player('handstick');
+const throttle = new throttle();
 let pauseTime = 0;
 let resumeTime = 0;
 
