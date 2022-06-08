@@ -24,4 +24,4 @@ gallery.on('show.simplelightbox', function (e) {
     gallery.options.captionData = e.target.children[0].title
 })
 
-console.log(galleryItems);
+// console.log(galleryItems);
