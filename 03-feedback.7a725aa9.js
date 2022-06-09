@@ -1,2 +1,0 @@
-var refs={form:document.querySelector(".feedback-form"),email:document.querySelector(".feedback-form input")};function onFormSubmit(e){}function saveInformation(e){var t=e.currentTarget.value;console.log(t),localStorage.setItem("feedback-form-state",t),updateOutput(),form.reset()}refs.form.addEventListener("submit",onFormSubmit),refs.email.addEventListener("input",saveInformation),evt.preventDefault(),console.log("Відправляємо форму");
-//# sourceMappingURL=03-feedback.7a725aa9.js.map
