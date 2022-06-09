@@ -4,7 +4,7 @@ import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
-// const throttle = require('lodash.throttle');
+const throttle = require('lodash.throttle');
 
 let pauseTime = 0;
 let resumeTime = 0;
@@ -23,5 +23,5 @@ player.getVideoTitle().then(function (title) {
     console.log('title', title);
 });
 
-player.setCurrentTime(resumeTime);
+player.setCurrentTime(resumeTime).then(onPlay(pauseTime));
 
