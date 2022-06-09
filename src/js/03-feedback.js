@@ -1,33 +1,43 @@
+import throttle from "lodash.throttle";
+
 const refs = {
-    form: document.querySelector(".feedback-form"),
+  form: document.querySelector(".feedback-form"),
   email: document.querySelector(".feedback-form input"),
   textarea: document.querySelector(".feedback-form textarea"),   
 };
 
 refs.form.addEventListener("submit", onFormSubmit);
-refs.email.addEventListener("input", saveInformation);
-refs.textarea.addEventListener("input", saveInformation);
+refs.form.addEventListener("input", throttle(onFormInput, 500));
 
-function onFormSubmit(evt){
+const feedbackForm = localStorage.getItem('feedback-form-state')
+  ? JSON.parse(localStorage.getItem('feedback-form-state')) : {};
+
+saveInformation()  
+
+function onFormInput(evt) {
+  feedbackForm[evt.target.name] = evt.target.value;
+  console.log(feedbackForm);
+  localStorage.setItem('feedback-form-state', JSON.stringify(feedbackForm));
+}
+
+function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log('Відправляємо форму');
   evt.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
 
-
 function saveInformation(evt) {
-    const message = evt.currentTarget.value;
-    console.log(message);
-  localStorage.setItem('feedback-form-state', message);
-}
+  if (!localStorage.getItem('feedback-form-state'))
+    return;
+  const savedMessage = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-function popylateText() {
-  const savedText = localStorage.getItem('feedback-form-state');
+  if (savedMessage) {
+    if (savedMessage.email) {
+      refs.email.value = savedMessage.email;
+    };
 
-  if (savedText) {
-    console.log(savedText);
-    refs.email.value = savedText;
-    refs.textarea.value = savedText;
+    if (savedMessage.message) {
+      refs.textarea.value = savedMessage.message;
+    }
   }
 }
