@@ -16,7 +16,6 @@ saveInformation()
 
 function onFormInput(evt) {
   feedbackForm[evt.target.name] = evt.target.value;
-  console.log(feedbackForm);
   localStorage.setItem('feedback-form-state', JSON.stringify(feedbackForm));
 }
 
@@ -24,6 +23,7 @@ function onFormSubmit(evt) {
   evt.preventDefault();
   evt.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
+  console.log(feedbackForm);
 }
 
 function saveInformation(evt) {
