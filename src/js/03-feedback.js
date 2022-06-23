@@ -20,6 +20,8 @@ function onFormInput(evt) {
 }
 
 function onFormSubmit(evt) {
+  if (!refs.email.value || !refs.textarea.value)
+    return;
   evt.preventDefault();
   evt.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
